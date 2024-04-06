@@ -1,0 +1,56 @@
+﻿﻿@model IEnumerable<PerformingArtsApplication.Models.StudentDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<style>
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h2>Students</h2>
+
+<!--search bar-->
+<form action="/Student/List" method="GET">
+    <input type="text" name="SearchKey" />
+    <input class="searchBtn" type="submit" value="Search" />
+</form>
+
+<br />
+
+<a href="/Student/New">New Student</a>
+
+<br />
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (PerformingArtsApplication.Models.StudentDto Student in Model)
+        {
+            <tr>
+                <td>@Student.StudentId</td>
+                <td><a href="/Student/Details/@Student.StudentId">@Student.FirstName @Student.LastName</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
